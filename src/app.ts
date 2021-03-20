@@ -7,8 +7,10 @@ import exphbs from 'express-handlebars';
 const app = express();
 
 app.use('/static',express.static('public'));
+// app.use('/discount', require('./views'));
 
 
+app.set('port', process.env.PORT || 5000 );
 const hbs = exphbs.create({
     extname: '.hbs',
     defaultLayout: 'layout',
@@ -26,5 +28,13 @@ app.get('/',function(req,res){
     res.render('home');
 });
 
+app.get('/bonificaciones',function(req,res){
+  res.render('listaBonificaciones');
+});
 
-app.listen(5000, () => console.log('server running'));
+app.get('/descuentos',function(req,res){
+  res.render('listaDescuentos');
+});
+
+
+app.listen(app.get('port'), () => console.log('server running on port ' + app.get('port')));

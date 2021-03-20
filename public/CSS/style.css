@@ -1,0 +1,52 @@
+.barraDeIconos {
+    top: 0;
+    overflow: hidden;
+    /* position: -webkit-sticky;  */
+    position: relative;
+    width: 100%;
+    background-color: #FFC000;
+    overflow: auto;
+  }
+  
+  .barraDeIconos a {
+      margin: 7px ;
+      float: left;
+    width: 49%;
+    text-align: center;
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    color: gray;
+    font-size: 175%;
+  }
+  
+  .barraDeIconos a:hover {
+    background-color: #ffa600;
+    /* font-size: 45px; */
+  }
+  
+  .barraDeIconos a.active {
+    
+    background-color: gray;
+    color: #FFC000;
+  }
+
+  .aligncenter {
+    text-align: center;
+    opacity: 0.7;
+}
+
+#customtr :hover:not(.header) {
+  background-color: #FFC000;
+}
+
+#customtr:nth-child(2n+1){
+  background-color: #ffbf007e;
+}
+.table-bordered td, .table-bordered th {
+  border: 0px solid rgb(255, 255, 255);
+}
+
+
+label{
+  color: black;
+}
