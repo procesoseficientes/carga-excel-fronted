@@ -1,48 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+<head>
+  <title>{{title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
-<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
-<script type="text/javascript" src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
-<script type="text/javascript" src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-<script type="text/javascript" src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'></script>
-<script type="text/javascript" src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js'></script>
+  <script type="text/javascript"
+    src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
+  <script type="text/javascript" src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+  <script type="text/javascript" src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+  <script type="text/javascript" src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'></script>
+  <script type="text/javascript" src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js'></script>
 
-    <link rel="stylesheet" href="static/CSS/style.css">
-  </head>
-  <body>
+  <link rel="stylesheet" href="static/CSS/style.css">
+</head>
 
-     <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="/">
-          <img src="static/img/sonda.png" width="30" height="30" class="d-inline-block align-top" alt="">
-          SONDA
-      </a>
-    </nav>
+<body>
 
-  <script>
-       //Click on any li in ul with class 'navbar-nav'
-      $('.barraDeIconos a').click(function(e) {
-        var $this = $(this); // declare variable for current li that we click
-        $('.barraDeIconos').find('a.active').last().removeClass('active') //find all li that class class active and remove
-        $this.addClass('active'); //add 'active' class to current li.
-      });
-    </script>
-
-    <main class="container-fluid text-light">
-        <div>
-          {{{body}}}
-        </div>
-    </main>
+  <nav class="navbar navbar-light bg-light" style="margin-left: 1%;">
+    <a class="navbar-brand" href="#">
+      <img src="static/img/sonda.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      SONDA
+    </a>
+  </nav>
 
 
-    
+  <main class="container-fluid text-light">
+    <div>
+      {{{body}}}
+    </div>
+  </main>
 
-  </body>
 
-   
+
+
+</body>
+
+
 </html>

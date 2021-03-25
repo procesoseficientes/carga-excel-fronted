@@ -7,7 +7,7 @@ import exphbs from 'express-handlebars';
 const app = express();
 
 app.use('/static',express.static('public'));
-// app.use('/discount', require('./views'));
+app.use('/src', express.static('src'));
 
 
 app.set('port', process.env.PORT || 5000 );
@@ -26,6 +26,10 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.get('/',function(req,res){
     res.render('home');
+});
+
+app.get('/login',function(req,res){
+  res.render('login');
 });
 
 app.get('/bonificaciones',function(req,res){

@@ -1,58 +1,160 @@
+body {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+
+/* Margen body */
+
 .barraDeIconos {
-    top: 0;
+    top: 0px;
+    left: 0;
     overflow: hidden;
     /* position: -webkit-sticky;  */
-    position: relative;
+    /* position: relative; */
     width: 100%;
-    background-color: #FFC000;
+    background-color: #ffffff;
     overflow: auto;
-  }
-  
-  .barraDeIconos a {
-      margin: 7px ;
-      float: left;
-    width: 49%;
+}
+
+.barraDeIconos a {
+    /* margin: 7px ; */
+    float: left;
+    width: 50%;
     text-align: center;
-    padding: 12px 0;
+    /* padding: 12px 0; */
+    padding: 12px;
+    margin: 0;
     transition: all 0.3s ease;
     color: gray;
     font-size: 175%;
-  }
-  
-  .barraDeIconos a:hover {
-    background-color: #ffa600;
-    /* font-size: 45px; */
-  }
-  
-  .barraDeIconos a.active {
-    
-    background-color: gray;
-    color: #FFC000;
-  }
+}
 
-  .aligncenter {
+.barraDeIconos i {
+    margin-left: 0;
+    left: 0;
+}
+
+.barraDeIconos a:hover {
+    background-color: #29323d;
+    /* font-size: 45px; */
+    color: white;
+}
+
+.barraDeIconos a.active {
+    background-color: #29323d;
+    color: white;
+}
+
+
+/* Barra de iconos (menú) */
+
+.aligncenter {
+    margin-top: 3%;
     text-align: center;
     opacity: 0.7;
 }
 
-#customtr :hover:not(.header) {
-  background-color: #FFC000;
+
+/* logo de Sonda en pantalla principal */
+
+thead {
+    background-color: #29323d;
+    color: white;
 }
 
-#customtr:nth-child(2n+1){
-  background-color: #ffbf007e;
-}
-.table-bordered td, .table-bordered th {
-  border: 0px solid rgb(255, 255, 255);
-}
-
-
-label{
-  color: black;
-}
-
-#DataTables_Table_0_info{
-  color: black;
+tfoot {
+    background-color: #29323d;
+    color: white;
 }
 
 
+/* #customtr:nth-child(2n+1) {
+    background-color: #29323d6e
+} */
+
+.table-bordered td,
+.table-bordered th {
+    border: 0px solid rgb(255, 255, 255);
+}
+
+label {
+    color: black;
+}
+
+#DataTables_Table_0_info {
+    color: black;
+}
+
+
+/* Tablas de datos */
+
+.login-box {
+    margin-top: 18%;
+    height: auto;
+    background: #29323d;
+    text-align: center;
+}
+
+.login-form {
+    margin-top: 25px;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 40px;
+    outline: 0px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0;
+}
+
+label {
+    margin-bottom: 0px;
+}
+
+.form-control-label {
+    font-size: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn-outline-primary {
+    border-color: #0DB8DE;
+    color: #0DB8DE;
+    border-radius: 0px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.btn-outline-primary:hover {
+    background-color: #0DB8DE;
+    right: 0px;
+}
+
+.login-btm {
+    float: right;
+}
+
+.login-button {
+    padding-right: 0px;
+    text-align: right;
+    margin-bottom: 25px;
+}
+
+.login-text {
+    text-align: left;
+    padding-left: 0px;
+    color: #A2A4A4;
+}
+
+.loginbttm {
+    padding: 0px;
+}
+
+
+/* Login */
