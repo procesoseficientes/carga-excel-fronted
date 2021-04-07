@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/procesoseficientes/carga-excel-fronted#readme",
   "dependencies": {
+    "@types/express-fileupload": "^1.1.6",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
     "express-handlebars": "^5.2.1"
   },
   "devDependencies": {
