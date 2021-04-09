@@ -8,7 +8,7 @@
 
   <div class="d-flex mb-3" style="margin-top: 2%;">
 
-    <form method="POST" action="#" enctype="multipart/form-data" style="margin-top: 12%; margin-left: 2%;">
+     <form {{!-- method="POST" action="#" enctype="multipart/form-data"--}} style="margin-top: 12%; margin-left: 2%;"> 
       <div class="form-group">
         <div class="input-group input-file" name="Fichier1">
           <span class="input-group-btn">
@@ -19,7 +19,7 @@
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-dark pull-right" style="width: 100%;">Submit</button>
+        <button class="btn btn-dark" id="btnSend" style="width: 100%;">Submit</button> 
       </div>
 
     </form>
@@ -189,6 +189,21 @@
     $(function () {
       bs_input_file();
     });
+    
+    $(document).ready(function() {
+    $("#btnSend").click(function() {
+      // disable button
+      $(this).prop("disabled", true);
+      // add spinner to button
+      $(this).html(
+        `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
+      );
+
+      setTimeout(function() {
+         $(this).prop("reset", true);
+   }, 2000);
+    });
+});
   </script>
 
 
