@@ -25,6 +25,38 @@
     </form>
 
     <div class="flex-grow-1 container mb-3 mt-3" style="margin-bottom: 10%; margin-right: 2%;">
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="nombreBonificacion" class="">Nombre:</label>
+            <input type="text" class="form-control" id="nombreBonificacion">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="chanelsList">Canal:</label>
+            <select class="form-control" id="chanelsList" name="chanels">
+              <option selected>Canal</option>
+              <option value="Detalle">Detalle</option>
+              <option value="Mayoreo">Mayoreo</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="bonificationsList">Tipo:</label>
+            <select class="form-control" id="bonificationsList" name="bonificationType">
+              <option selected>Tipo</option>
+              <option value="DISCOUNT_BY_GENERAL_AMOUNT">DESCUENTO POR MONTO GENERAL</option>
+              <option value="DISCOUNT_BY_GENERAL_AMOUNT_AND_FAMILY">DESCUENTO POR MONTO GENERAL Y FAMILIA</option>
+              <option value="DISCOUNT_BY_SCALE">DESCUENTO POR ESCALA</option>
+            </select>
+          </div>
+      
+          <div class="col-md-2">
+
+             <label for="inputState"></label><label for="inputState"></label>
+            <button id="download" class="btn btn-dark" style="width: 100%;" onclick="document.getElementById('link').click()">Descargar Plantilla</button>
+      <a id="link" href="static/csv/Descuentos.csv"></a>
+          </div>
+        </div>
+      </form>
       <table class="table table-stripped table-bordered mydatatable" style="width: 100%">
         <thead id="thead">
           <tr id="customtr">
@@ -203,6 +235,11 @@
          $(this).prop("reset", true);
    }, 2000);
     });
+});
+
+
+document.getElementById("download").addEventListener("click", function(event){
+  event.preventDefault()
 });
   </script>
 
