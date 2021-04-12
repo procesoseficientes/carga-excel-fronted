@@ -8,6 +8,7 @@
 
   <div class="d-flex mb-3" style="margin-top: 2%;">
 
+
     <form method="POST" action="http://localhost:5000/upload" enctype="multipart/form-data" style="margin-top: 12%; margin-left: 2%;" target="hiddenFrame">
       <div class="form-group">
         <div class="input-group input-file" name="uploadedFile">
@@ -19,12 +20,44 @@
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-dark pull-right" style="width: 100%;">Submit</button>
+        <button class="btn btn-dark" id="btnSend" style="width: 100%;">Submit</button> 
       </div>
 
     </form>
 
     <div class="flex-grow-1 container mb-3 mt-3" style="margin-bottom: 10%; margin-right: 2%;">
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="nombreDescuento" class="">Nombre:</label>
+            <input type="text" class="form-control" id="nombreDescuento">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="chanelsList">Canal:</label>
+            <select class="form-control" id="chanelsList" name="chanels">
+              <option selected>Canal</option>
+              <option value="Detalle">Detalle</option>
+              <option value="Mayoreo">Mayoreo</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="bonificationsList">Tipo:</label>
+            <select class="form-control" id="bonificationsList" name="bonificationType">
+              <option selected>Tipo</option>
+              <option value="DISCOUNT_BY_GENERAL_AMOUNT">DESCUENTO POR MONTO GENERAL</option>
+              <option value="DISCOUNT_BY_GENERAL_AMOUNT_AND_FAMILY">DESCUENTO POR MONTO GENERAL Y FAMILIA</option>
+              <option value="DISCOUNT_BY_SCALE">DESCUENTO POR ESCALA</option>
+            </select>
+          </div>
+      
+          <div class="col-md-2">
+
+             <label for="inputState"></label><label for="inputState"></label>
+            <button id="download" class="btn btn-dark" style="width: 100%;" onclick="document.getElementById('link').click()">Descargar Plantilla</button>
+      <a id="link" href="static/csv/Descuentos.csv"></a>
+          </div>
+        </div>
+      </form>
       <table class="table table-stripped table-bordered mydatatable" style="width: 100%">
         <thead id="thead">
           <tr id="customtr">
@@ -192,6 +225,26 @@
     $(function () {
       bs_input_file();
     });
+    
+    $(document).ready(function() {
+    $("#btnSend").click(function() {
+      // disable button
+      $(this).prop("disabled", true);
+      // add spinner to button
+      $(this).html(
+        `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
+      );
+
+      setTimeout(function() {
+         $(this).prop("reset", true);
+   }, 2000);
+    });
+});
+
+
+document.getElementById("download").addEventListener("click", function(event){
+  event.preventDefault()
+});
   </script>
 
 
