@@ -4,12 +4,13 @@ import flash from 'connect-flash';
 import session from 'express-session'
 //const flash = require('connect-flash')
 import exphbs from 'express-handlebars';
+//import papa from 'papaparse'
 
 const app = express();
 
 app.use('/static',express.static('public'));
-app.use('/src', express.static('src'));
 app.use('/views', express.static('views'))
+app.use('/js', express.static('js'))
 
 
 app.set('port', process.env.PORT || 5000 );
