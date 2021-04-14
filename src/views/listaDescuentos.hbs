@@ -63,14 +63,10 @@
           <thead id="thead">
             <tr id="customtr">
               <th>Codigo SKU</th>
-              <th>Unidades por fardo</th>
               <th>Unidad de Paquete</th>
               <th>Limite inferior</th>
               <th>Limite superior</th>
               <th>Descuento</th>
-              <th>ID de promocion</th>
-              <th>ID de promocion</th>
-              <th>Tipo de promocion</th>
               <th>Tipo de Descuento</th>
             </tr>
           </thead>
@@ -80,14 +76,10 @@
           <tfoot>
             <tr id="customtr">
               <th>Codigo SKU</th>
-              <th>Unidades por fardo</th>
               <th>Unidad de Paquete</th>
               <th>Limite inferior</th>
               <th>Limite superior</th>
               <th>Descuento</th>
-              <th>ID de promocion</th>
-              <th>ID de promocion</th>
-              <th>Tipo de promocion</th>
               <th>Tipo de Descuento</th>
             </tr>
           </tfoot>
@@ -173,15 +165,27 @@ function loadDiscounts() {
       });
   };
 
-
-
-
 $(document).ready(function () {
   $('#btnClear').click(function() {
      descuentos.clear().draw();
   });
 });
 
+
+$(document).ready(function() {
+    $("#btnSend").click(function() {
+      // disable button
+      $(this).prop("disabled", true);
+      // add spinner to button
+      $(this).html(
+        `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
+      );
+      setTimeout(function() {
+         const button = document.querySelector("#btnSend");
+         button.disabled = false;
+   }, 4000);
+    });
+});
 
   </script>
 
