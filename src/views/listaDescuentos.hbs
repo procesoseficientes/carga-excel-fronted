@@ -111,10 +111,26 @@
       $(".input-file").before(
         function () {
           if (!$(this).prev().hasClass('input-ghost')) {
-            var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
+            var element = $("<input id='load-csv' type='file' accept='.csv' class='input-ghost' style='visibility:hidden; height:0'>");
             element.attr("name", $(this).attr("name"));
-            element.change(function () {
+            element.change(function (e) {
               element.next(element).find('input').val((element.val()).split('\\').pop());
+              if (!e.target.files.length) {
+                console.log("Please choose a csv file...");
+                return
+              }else{
+                console.log("archivo");
+                const file = e.target.files[0];
+                Papa.parse(file, { //origin del archivo
+                    download: true,
+                    complete: function(example) {
+                        console.log(example.data) //imprimir array con los datos en la consola
+                        descuentos.clear().draw(); //limpiar la tabla   
+                        descuentos.rows.add(example.data.slice(1,-2)).draw();  //mostrar datos en la tabla
+                    }
+                });
+                return
+              }
             });
             $(this).find("button.btn-choose").click(function () {
               element.click();
@@ -137,8 +153,6 @@
       bs_input_file();
     });
 
-    
-
 //Evitar recarga de pagina al precional los botones de los formularios
     document.getElementById("download").addEventListener("click", function (event) {
       event.preventDefault()
@@ -146,10 +160,6 @@
     document.getElementById("btnSend").addEventListener("click", function (event) {
       event.preventDefault()
     });
-    document.getElementById("btnClear").addEventListener("click", function (event) {
-      event.preventDefault()
-    });
-
 
 //Cargar datos de archivo a la tabla
 function loadDiscounts() {
