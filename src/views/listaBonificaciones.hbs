@@ -8,9 +8,10 @@
 
   <div class="d-flex mb-3" style="margin-top: 2%;">
 
-     <form {{!-- method="POST" action="#" enctype="multipart/form-data"--}} style="margin-top: 12%; margin-left: 2%;"> 
+
+    <form method="POST" action="http://localhost:5000/upload" enctype="multipart/form-data" style="margin-top: 12%; margin-left: 2%;" target="hiddenFrame">
       <div class="form-group">
-        <div class="input-group input-file" name="Fichier1">
+        <div class="input-group input-file" name="uploadedFile">
           <span class="input-group-btn">
             <button class="btn btn-dark btn-choose" type="button"><i class="fa fa-folder"></i> Archivo</button>
           </span>
@@ -99,6 +100,7 @@
       </div>
     </div>
   </div>
+ <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
 
   <script>
      //Inicializar tabla
@@ -110,6 +112,7 @@
     });
 
 //Estilo y funcionamiento de boton de cargar archivo
+
     function bs_input_file() {
       $(".input-file").before(
         function () {
@@ -175,6 +178,5 @@ $(document).ready(function () {
   });
 });
   </script>
-
 
 </body>
