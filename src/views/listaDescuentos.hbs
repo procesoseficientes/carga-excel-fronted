@@ -8,24 +8,22 @@
 
   <div class="d-flex mb-3" style="margin-top: 2%;">
 
-
     <form method="POST" action="http://localhost:5000/upload" enctype="multipart/form-data" style="margin-top: 12%; margin-left: 2%;" target="hiddenFrame">
       <div class="form-group">
         <div class="input-group input-file" name="uploadedFile">
           <span class="input-group-btn">
             <button class="btn btn-dark btn-choose" type="button"><i class="fa fa-folder"></i> Archivo</button>
           </span>
-          <input type="text" class="form-control" placeholder='Choose a file...' />
+          <input type="text" class="form-control" placeholder='Escoger archivo...' />
         </div>
       </div>
 
       <div class="form-group">
-        <button class="btn btn-dark" id="btnSend" style="width: 100%;">Submit</button> 
+        <button class="btn btn-dark" id="btnSend" style="width: 100%;" onclick="loadDiscounts()">Subir</button>
       </div>
-
     </form>
 
-    <div class="flex-grow-1 container mb-3 mt-3" style="margin-bottom: 10%; margin-right: 2%;">
+    <div class="flex-grow-1 mb-3 mt-3" style="margin-bottom: 10%; margin-right: 2%; margin-left: 3%;">
       <form>
         <div class="form-row">
           <div class="form-group col-md-4">
@@ -49,143 +47,45 @@
               <option value="DISCOUNT_BY_SCALE">DESCUENTO POR ESCALA</option>
             </select>
           </div>
-      
+
           <div class="col-md-2">
 
-             <label for="inputState"></label><label for="inputState"></label>
-            <button id="download" class="btn btn-dark" style="width: 100%;" onclick="document.getElementById('link').click()">Descargar Plantilla</button>
-      <a id="link" href="static/csv/Descuentos.csv"></a>
+            <label for="inputState"></label><label for="inputState"></label>
+            <button id="download" class="btn btn-dark" style="width: 100%;"
+              onclick="document.getElementById('link').click()">Descargar Plantilla</button>
+            <a id="link" href="static/csv/Descuentos.csv"></a>
           </div>
         </div>
       </form>
-      <table class="table table-stripped table-bordered mydatatable" style="width: 100%">
-        <thead id="thead">
-          <tr id="customtr">
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id="customtr">
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
-          </tr>
-          <tr id="customtr">
-            <td>Garrett Winters</td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>63</td>
-            <td>2011/07/25</td>
-            <td>$170,750</td>
-          </tr>
-          <tr id="customtr">
-            <td>Ashton Cox</td>
-            <td>Junior Technical Author</td>
-            <td>San Francisco</td>
-            <td>66</td>
-            <td>2009/01/12</td>
-            <td>$86,000</td>
-          </tr>
-          <tr id="customtr">
-            <td>Cedric Kelly</td>
-            <td>Senior Javascript Developer</td>
-            <td>Edinburgh</td>
-            <td>22</td>
-            <td>2012/03/29</td>
-            <td>$433,060</td>
-          </tr>
-          <tr id="customtr">
-            <td>Airi Satou</td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>33</td>
-            <td>2008/11/28</td>
-            <td>$162,700</td>
-          </tr>
-          <tr id="customtr">
-            <td>Brielle Williamson</td>
-            <td>Integration Specialist</td>
-            <td>New York</td>
-            <td>61</td>
-            <td>2012/12/02</td>
-            <td>$372,000</td>
-          </tr>
-          <tr id="customtr">
-            <td>Herrod Chandler</td>
-            <td>Sales Assistant</td>
-            <td>San Francisco</td>
-            <td>59</td>
-            <td>2012/08/06</td>
-            <td>$137,500</td>
-          </tr>
-          <tr id="customtr">
-            <td>Rhona Davidson</td>
-            <td>Integration Specialist</td>
-            <td>Tokyo</td>
-            <td>55</td>
-            <td>2010/10/14</td>
-            <td>$327,900</td>
-          </tr>
-          <tr id="customtr">
-            <td>Colleen Hurst</td>
-            <td>Javascript Developer</td>
-            <td>San Francisco</td>
-            <td>39</td>
-            <td>2009/09/15</td>
-            <td>$205,500</td>
-          </tr>
-          <tr id="customtr">
-            <td>Sonya Frost</td>
-            <td>Software Engineer</td>
-            <td>Edinburgh</td>
-            <td>23</td>
-            <td>2008/12/13</td>
-            <td>$103,600</td>
-          </tr>
-          <tr id="customtr">
-            <td>Jena Gaines</td>
-            <td>Office Manager</td>
-            <td>London</td>
-            <td>30</td>
-            <td>2008/12/19</td>
-            <td>$90,560</td>
-          </tr>
-          <tr id="customtr">
-            <td>Quinn Flynn</td>
-            <td>Support Lead</td>
-            <td>Edinburgh</td>
-            <td>22</td>
-            <td>2013/03/03</td>
-            <td>$342,000</td>
-          </tr>
-          <tr id="customtr">
-            <td>Charde Marshall</td>
-            <td>Regional Director</td>
-            <td>San Francisco</td>
-            <td>36</td>
-            <td>2008/10/16</td>
-            <td>$470,600</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr id="customtr">
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-          </tr>
-        </tfoot>
-      </table>
+
+      <div>
+       <table class="table table-stripped table-bordered mydatatable" style="width: 100%" id="discountTable">
+          <thead id="thead">
+            <tr id="customtr">
+              <th>Codigo SKU</th>
+              <th>Unidad de Paquete</th>
+              <th>Limite inferior</th>
+              <th>Limite superior</th>
+              <th>Descuento</th>
+              <th>Tipo de Descuento</th>
+            </tr>
+          </thead>
+          <tbody>
+          {{!-- Información de la tabla --}}
+          </tbody>
+          <tfoot>
+            <tr id="customtr">
+              <th>Codigo SKU</th>
+              <th>Unidad de Paquete</th>
+              <th>Limite inferior</th>
+              <th>Limite superior</th>
+              <th>Descuento</th>
+              <th>Tipo de Descuento</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
     </div>
   </div>
 
@@ -193,17 +93,39 @@
 
 
   <script>
-    $('.mydatatable').DataTable();
+  //Inicializar tabla
+    var descuentos = $('.mydatatable').DataTable({
+      dataSrc:"",
+       language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json" //Archivo de idioma
+        }
+    });
 
-
+//Estilo y funcionamiento de boton de cargar archivo
     function bs_input_file() {
       $(".input-file").before(
         function () {
           if (!$(this).prev().hasClass('input-ghost')) {
-            var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
+            var element = $("<input id='load-csv' type='file' accept='.csv' class='input-ghost' style='visibility:hidden; height:0'>");
             element.attr("name", $(this).attr("name"));
-            element.change(function () {
+            element.change(function (e) {
               element.next(element).find('input').val((element.val()).split('\\').pop());
+              if (!e.target.files.length) {
+                console.log("Please choose a csv file...");
+                return
+              }else{
+                console.log("archivo");
+                const file = e.target.files[0];
+                Papa.parse(file, { //origin del archivo
+                    download: true,
+                    complete: function(example) {
+                        console.log(example.data) //imprimir array con los datos en la consola
+                        descuentos.clear().draw(); //limpiar la tabla   
+                        descuentos.rows.add(example.data.slice(1,-2)).draw();  //mostrar datos en la tabla
+                    }
+                });
+                return
+              }
             });
             $(this).find("button.btn-choose").click(function () {
               element.click();
@@ -225,8 +147,35 @@
     $(function () {
       bs_input_file();
     });
-    
-    $(document).ready(function() {
+
+//Evitar recarga de pagina al precional los botones de los formularios
+    document.getElementById("download").addEventListener("click", function (event) {
+      event.preventDefault()
+    });
+    document.getElementById("btnSend").addEventListener("click", function (event) {
+      event.preventDefault()
+    });
+
+//Cargar datos de archivo a la tabla
+function loadDiscounts() {
+      Papa.parse("static/csv/formato.csv", { //origin del archivo
+          download: true,
+          complete: function(example) {
+              console.log(example.data) //imprimir array con los datos en la consola
+              descuentos.clear().draw(); //limpiar la tabla
+              descuentos.rows.add(example.data).draw();  //mostrar datos en la tabla
+          }
+      });
+  };
+
+$(document).ready(function () {
+  $('#btnClear').click(function() {
+     descuentos.clear().draw();
+  });
+});
+
+
+$(document).ready(function() {
     $("#btnSend").click(function() {
       // disable button
       $(this).prop("disabled", true);
@@ -234,17 +183,13 @@
       $(this).html(
         `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
       );
-
       setTimeout(function() {
-         $(this).prop("reset", true);
-   }, 2000);
+         const button = document.querySelector("#btnSend");
+         button.disabled = false;
+   }, 4000);
     });
 });
 
-
-document.getElementById("download").addEventListener("click", function(event){
-  event.preventDefault()
-});
   </script>
 
 
