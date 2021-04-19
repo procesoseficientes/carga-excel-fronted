@@ -1,5 +1,7 @@
 window.onload=function(){
 
+
+
 //inicializar tabla
   var descuentos = $('.mydatatable').DataTable({
     dataSrc:"",
@@ -7,6 +9,8 @@ window.onload=function(){
       url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json" //Archivo de idioma
     }
   });
+
+  var listSKUS;
 
 //Estilo y funcionamiento de boton de cargar archivo
   function bs_input_file() {
@@ -25,10 +29,14 @@ window.onload=function(){
               const file = e.target.files[0];
               Papa.parse(file, { //origin del archivo
                   download: true,
-                  complete: function(example) {
-                      console.log(example.data) //imprimir array con los datos en la consola
+                  header: true,
+                  complete: function(e) {
+                      console.log(e.data); //imprimir array con los datos en la consola
+                      listSKUS = e;
+                      const result = e.data.slice(0,-1).map(a => Object.values(a));
+                      console.log(result);                      
                       descuentos.clear().draw(); //limpiar la tabla   
-                      descuentos.rows.add(example.data.slice(1,-2)).draw();  //mostrar datos en la tabla
+                      descuentos.rows.add(result).draw();  //mostrar datos en la tabla
                   }
               });
               $("#btnSend").prop("disabled", false);
@@ -66,6 +74,7 @@ window.onload=function(){
     );
 
     var formData = new FormData(this);
+    formData.append('listSKUS', JSON.stringify(listSKUS))
 
     $.ajax({
         url: 'http://localhost:3000/upload',
