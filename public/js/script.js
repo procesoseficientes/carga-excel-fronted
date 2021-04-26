@@ -32,7 +32,7 @@ window.onload=function(){
                   header: true,
                   complete: function(e) {
                       console.log(e.data); //imprimir array con los datos en la consola
-                      listSKUS = e;
+                      listSKUS = e.data.slice(0,-1);
                       const result = e.data.slice(0,-1).map(a => Object.values(a));
                       console.log(result);                      
                       descuentos.clear().draw(); //limpiar la tabla   
@@ -74,15 +74,30 @@ window.onload=function(){
     );
 
     var formData = new FormData(this);
-    formData.append('listSKUS', JSON.stringify(listSKUS))
+    formData.append('promoItems', JSON.stringify(listSKUS))
+    console.log(JSON.stringify(listSKUS))
+    
+    console.log(formData.get("promoType"))
+    switch(formData.get("promoType")) {
+      case "DISCOUNT_BY_GENERAL_AMOUNT":
+        var route = "discountByGeneralAmount"
+        break;
+      case "DISCOUNT_BY_GENERAL_AMOUNT_AND_FAMILY":
+        var route = "discountByFamily"
+        break;
+      case "DISCOUNT_BY_SCALE":
+        var route = "discountByScale"
+        break;
+    }
 
     $.ajax({
-        url: 'http://localhost:3000/upload',
+        url: `http://localhost:3000/discounts/${route}`,
         type: 'POST',
         data: formData,
         success: function (data) {
           $("#btnSend").prop("disabled", false);
           $("#btnSend").html('Submit');
+          window.alert(JSON.stringify(data));
         },
         cache: false,
         contentType: false,
