@@ -2,6 +2,20 @@ window.onload=function(){
 
 
 
+  var dict = { 
+    "CODIGO SKU" : "codeSKU" , 
+    "UNIDADES/FARDOS" : "packUnit", 
+    "VENTA MINIMA": "lowLimit",
+    "VENTA MAXIMA": "highLimit",
+    "DESCUENTO": "discount",
+    "TIPO DE DESCUENTO": "discountType",
+    "CODIGO FAMILIA SKU": "codeFamilySku",
+    "CODIGO SKU BONIFICADO":"codeSKUBonus",
+    "UNIDADES/FARDOS BONIFIACION":"packUnitBonus",
+    "CANTIDAD BONIFICADA":"bonusQTY",
+    "MULTIPLO":"multiple"
+  };
+
 //inicializar tabla
   var descuentos = $('.mydatatable').DataTable({
     dataSrc:"",
@@ -10,7 +24,7 @@ window.onload=function(){
     }
   });
 
-  var listSKUS;
+  var promoItems;
 
 //Estilo y funcionamiento de boton de cargar archivo
   function bs_input_file() {
@@ -30,9 +44,13 @@ window.onload=function(){
               Papa.parse(file, { //origin del archivo
                   download: true,
                   header: true,
+                  transformHeader: function(h){
+                    console.log(`${h} : ${dict[h]}`)
+                    return dict[h]
+                  },
                   complete: function(e) {
                       console.log(e.data); //imprimir array con los datos en la consola
-                      listSKUS = e.data.slice(0,-1);
+                      promoItems = e.data.slice(0,-1);
                       const result = e.data.slice(0,-1).map(a => Object.values(a));
                       console.log(result);                      
                       descuentos.clear().draw(); //limpiar la tabla   
@@ -74,10 +92,11 @@ window.onload=function(){
     );
 
     var formData = new FormData(this);
-    formData.append('promoItems', JSON.stringify(listSKUS))
-    console.log(JSON.stringify(listSKUS))
+    formData.append('promoItems', JSON.stringify(promoItems))
+    console.log(JSON.stringify(promoItems))
     
     console.log(formData.get("promoType"))
+  
     switch(formData.get("promoType")) {
       case "DISCOUNT_BY_GENERAL_AMOUNT":
         var route = "discountByGeneralAmount"
@@ -88,16 +107,35 @@ window.onload=function(){
       case "DISCOUNT_BY_SCALE":
         var route = "discountByScale"
         break;
+      case "BONUS_BY_SCALE":
+        var route = "/bonusByScale"
+        break;
+      case "BONUS_BY_MULTIPLE":
+        var route = "/bonusByMultiple"
+        break;
+      case "BONUS_BY_GENERAL_AMOUNT":
+        var route = "/bonusByMultiple"
+        break;  
     }
-
     $.ajax({
         url: `http://localhost:3000/discounts/${route}`,
         type: 'POST',
         data: formData,
-        success: function (data) {
+        success: function (data, textStatus) {
           $("#btnSend").prop("disabled", false);
           $("#btnSend").html('Submit');
-          window.alert(JSON.stringify(data));
+          $("#modalTitle").html('Operación Exitosa!')
+          $("#modalText").html(`Se insertaron ${data.length} filas a la promoción ${data[0].PROMO_ID}`)
+          $("#modalFooter").html("<a data-dismiss='modal' class='btn btn-success'>Ok</a>")
+          $("#myModal").modal('show')
+        },
+        error: function(xhr, textStatus){
+          $("#btnSend").prop("disabled", false);
+          $("#btnSend").html('Submit');
+          $("#modalTitle").html('Ocurrió un error')
+          $("#modalText").html(`${xhr.responseText}`)
+          $("#modalFooter").html("<a data-dismiss='modal' class='btn btn-danger'>Cancel</a>")
+          $("#myModal").modal('show')
         },
         cache: false,
         contentType: false,

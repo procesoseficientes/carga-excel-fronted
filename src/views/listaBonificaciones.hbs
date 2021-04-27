@@ -5,8 +5,7 @@
     <a href="bonificaciones" class="navbar-brand active">BONIFICACIONES</a>
   </div>
 
-
-   <form id='data'>
+  <form id='data'>
 
     <div class="d-flex mb-3" style="margin-top: 2%;">
 
@@ -34,23 +33,23 @@
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="nombreDescuento" class="">Nombre:</label>
-              <input type="text" class="form-control" id="promoName" name="name" required>
+              <input type="text" class="form-control" id="nombreDescuento" name="promoName" required>
             </div>
-            <div class="form-group col-md-3">
+            {{!-- <div class="form-group col-md-3">
               <label for="chanelsList">Canal:</label>
               <select class="form-control" id="chanelsList" name="chanels" required>
                 <option value='' disabled selected>Canal</option>
                 <option value="Detalle">Detalle</option>
                 <option value="Mayoreo">Mayoreo</option>
               </select>
-            </div>
+            </div> --}}
             <div class="form-group col-md-3">
               <label for="bonificationsList">Tipo:</label>
               <select class="form-control" id="bonificationsList" name="promoType" required>
                 <option value='' disabled selected>Tipo</option>
-                <option value="DISCOUNT_BY_GENERAL_AMOUNT">DESCUENTO POR MONTO GENERAL</option>
-                <option value="DISCOUNT_BY_GENERAL_AMOUNT_AND_FAMILY">DESCUENTO POR MONTO GENERAL Y FAMILIA</option>
-                <option value="DISCOUNT_BY_SCALE">DESCUENTO POR ESCALA</option>
+                <option value="BONUS_BY_SCALE">BONO POR ESCALA</option>
+                <option value="BONUS_BY_MULTIPLE">BONO POR MULTIPLO</option>
+                <option value="BONUS_BY_GENERAL_AMOUNT">BONO POR MONTO</option>
               </select>
             </div>
 
@@ -65,18 +64,14 @@
         {{!-- </form> --}}
 
         <div>
-                 <table class="table table-stripped table-bordered mydatatable" style="width: 100%" id="discountTable">
+          <table class="table table-stripped table-bordered mydatatable" style="width: 100%" id="promoTable">
             <thead id="thead">
               <tr id="customtr">
                 <th>Codigo SKU</th>
-                <th>Unidades por fardo</th>
                 <th>Unidad de Paquete</th>
                 <th>Limite inferior</th>
                 <th>Limite superior</th>
                 <th>Descuento</th>
-                <th>ID de promocion</th>
-                <th>ID de promocion</th>
-                <th>Tipo de promocion</th>
                 <th>Tipo de Descuento</th>
               </tr>
             </thead>
@@ -86,14 +81,10 @@
             <tfoot>
               <tr id="customtr">
                 <th>Codigo SKU</th>
-                <th>Unidades por fardo</th>
                 <th>Unidad de Paquete</th>
                 <th>Limite inferior</th>
                 <th>Limite superior</th>
                 <th>Descuento</th>
-                <th>ID de promocion</th>
-                <th>ID de promocion</th>
-                <th>Tipo de promocion</th>
                 <th>Tipo de Descuento</th>
               </tr>
             </tfoot>
@@ -105,9 +96,26 @@
 
   </form>
 
+  <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
 
- <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+  <div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header">			
+          <h4 id="modalTitle" style="color:black" class="modal-title"></h4>	
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p id="modalText" style="color:black"></p>
+        </div>
+        <div id="modalFooter" class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>     
+
 
   <script type="text/javascript" src="static/js/script.js"></script>
+
 
 </body>
