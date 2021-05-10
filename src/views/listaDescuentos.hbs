@@ -17,7 +17,7 @@
             <span class="input-group-btn">
               <button class="btn btn-dark btn-choose" type="button"><i class="fa fa-folder"></i> Archivo</button>
             </span>
-            <input type="text" class="form-control" placeholder='Escoger archivo...' />
+            <input disabled id="path-display" type="text" class="form-control" placeholder='Escoger archivo...' />
           </div>
         </div>
 
@@ -44,11 +44,11 @@
               </select>
             </div> --}}
             <div class="form-group col-md-3">
-              <label for="bonificationsList">Tipo:</label>
-              <select class="form-control" id="bonificationsList" name="promoType" required>
+              <label for="promoTypeSelect">Tipo:</label>
+              <select class="form-control" id="promoTypeSelect" name="promoType" required>
                 <option value='' disabled selected>Tipo</option>
                 <option value="DISCOUNT_BY_GENERAL_AMOUNT">DESCUENTO POR MONTO GENERAL</option>
-                <option value="DISCOUNT_BY_GENERAL_AMOUNT_AND_FAMILY">DESCUENTO POR MONTO GENERAL Y FAMILIA</option>
+                <option value="DISCOUNT_BY_GENERAL_AMOUNT_AND_FAMILY">DESCUENTO POR FAMILIA</option>
                 <option value="DISCOUNT_BY_SCALE">DESCUENTO POR ESCALA</option>
               </select>
             </div>
@@ -66,7 +66,7 @@
         <div>
           <table class="table table-stripped table-bordered mydatatable" style="width: 100%" id="promoTable">
             <thead id="thead">
-              <tr id="customtr">
+              <tr id="tableHeader">
                 <th>Codigo SKU</th>
                 <th>Unidad de Paquete</th>
                 <th>Limite inferior</th>
@@ -79,7 +79,7 @@
             {{!-- Información de la tabla --}}
             </tbody>
             <tfoot>
-              <tr id="customtr">
+              <tr id="tableFooter">
                 <th>Codigo SKU</th>
                 <th>Unidad de Paquete</th>
                 <th>Limite inferior</th>

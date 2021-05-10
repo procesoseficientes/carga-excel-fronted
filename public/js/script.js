@@ -1,8 +1,6 @@
 window.onload=function(){
 
-
-
-  var dict = { 
+  const dict = { 
     "CODIGO SKU" : "codeSKU" , 
     "UNIDADES/FARDOS" : "packUnit", 
     "VENTA MINIMA": "lowLimit",
@@ -17,21 +15,22 @@ window.onload=function(){
   };
 
 //inicializar tabla
-  var descuentos = $('.mydatatable').DataTable({
+  let descuentos = $('.mydatatable').DataTable({
     dataSrc:"",
     language: {
       url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json" //Archivo de idioma
     }
   });
 
-  var promoItems;
+  let promoItems;
+  let route = ""
 
 //Estilo y funcionamiento de boton de cargar archivo
   function bs_input_file() {
     $(".input-file").before(
       function () {
         if (!$(this).prev().hasClass('input-ghost')) {
-          var element = $("<input id='load-csv' type='file' accept='.csv' class='input-ghost' style='visibility:hidden; height:0'>");
+          let element = $("<input required disabled id='load-csv' type='file' accept='.csv' class='input-ghost' style='visibility:hidden; height:0'>");
           element.attr("name", $(this).attr("name"));
           element.change(function (e) {
             element.next(element).find('input').val((element.val()).split('\\').pop());
@@ -51,6 +50,7 @@ window.onload=function(){
                   complete: function(e) {
                       console.log(e.data); //imprimir array con los datos en la consola
                       promoItems = e.data.slice(0,-1);
+                      console.log(promoItems)
                       const result = e.data.slice(0,-1).map(a => Object.values(a));
                       console.log(result);                      
                       descuentos.clear().draw(); //limpiar la tabla   
@@ -78,8 +78,86 @@ window.onload=function(){
       }
     );
   }
+
   $(function () {
     bs_input_file();
+  });
+
+  $("#promoTypeSelect").change(function(){
+    let html = ``
+    let selectedPromoType = $(this).children("option:selected").val();
+    switch(selectedPromoType) {
+      case "DISCOUNT_BY_GENERAL_AMOUNT":
+        route = "discountByGeneralAmount"
+        html = `
+        <th>Venta Minima</th>
+        <th>Venta Maxima</th>
+        <th>Descuento</th>
+        `
+        break;
+      case "DISCOUNT_BY_GENERAL_AMOUNT_AND_FAMILY":
+        route = "discountByFamily"
+        html = `
+        <th>Codigo Familia SKU</th>
+        <th>Limite inferior</th>
+        <th>Limite superior</th>
+        <th>Descuento</th>
+        <th>Tipo de Descuento</th>
+        `
+        break;
+      case "DISCOUNT_BY_SCALE":
+        route = "discountByScale"
+        html = `
+        <th>Codigo SKU</th>
+        <th>Unidad de Paquete</th>
+        <th>Limite inferior</th>
+        <th>Limite superior</th>
+        <th>Descuento</th>
+        <th>Tipo de Descuento</th>
+        `
+        break;
+      case "BONUS_BY_SCALE":
+        route = "bonusByScale"
+        html = `
+        <th>Codigo SKU</th>
+        <th>Unidad de Paquete</th>
+        <th>Limite inferior</th>
+        <th>Limite superior</th>
+        <th>Codigo SKU Bonificado</th>
+        <th>Unidad de Paquete Bonificado</th>
+        <th>Cantidad Bonificada</th>
+        `
+        break;
+      case "BONUS_BY_MULTIPLE":
+        route = "bonusByMultiple"
+        html = `
+        <th>Codigo SKU</th>
+        <th>Unidad de Paquete</th>
+        <th>Multiplo</th>
+        <th>Codigo SKU Bonificado</th>
+        <th>Unidad de Paquete Bonificado</th>
+        <th>Cantidad Bonificada</th>
+        `
+        break;
+      case "BONUS_BY_GENERAL_AMOUNT":
+        route = "bonusByMultiple"
+        html = `
+        <th>Venta Minima</th>
+        <th>Venta Maxima</th>
+        <th>Codigo SKU Bonificado</th>
+        <th>Unidad de Paquete Bonificado</th>
+        <th>Cantidad Bonificada</th>
+        `
+        break;  
+    }
+    $("#path-display").prop("disabled", false);
+    $("#load-csv").prop("disabled", false);
+    $("#btnSend").prop("disabled", true);
+    $("#path-display").val('Escoger archivo...')
+    $("#load-csv").val('');
+    descuentos.clear().draw();
+    $("#tableHeader").html(html);
+    $("#tableFooter").html(html);
   });
 
   $("form#data").submit(function(e) {
@@ -91,32 +169,12 @@ window.onload=function(){
       `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
     );
 
-    var formData = new FormData(this);
+    let formData = new FormData(this);
     formData.append('promoItems', JSON.stringify(promoItems))
     console.log(JSON.stringify(promoItems))
     
     console.log(formData.get("promoType"))
-  
-    switch(formData.get("promoType")) {
-      case "DISCOUNT_BY_GENERAL_AMOUNT":
-        var route = "discountByGeneralAmount"
-        break;
-      case "DISCOUNT_BY_GENERAL_AMOUNT_AND_FAMILY":
-        var route = "discountByFamily"
-        break;
-      case "DISCOUNT_BY_SCALE":
-        var route = "discountByScale"
-        break;
-      case "BONUS_BY_SCALE":
-        var route = "/bonusByScale"
-        break;
-      case "BONUS_BY_MULTIPLE":
-        var route = "/bonusByMultiple"
-        break;
-      case "BONUS_BY_GENERAL_AMOUNT":
-        var route = "/bonusByMultiple"
-        break;  
-    }
+
     $.ajax({
         url: `http://localhost:3000/discounts/${route}`,
         type: 'POST',
