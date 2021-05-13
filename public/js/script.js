@@ -52,9 +52,11 @@ window.onload=function(){
                       promoItems = e.data.slice(0,-1);
                       console.log(promoItems)
                       const result = e.data.slice(0,-1).map(a => Object.values(a));
-                      console.log(result);                      
-                      descuentos.clear().draw(); //limpiar la tabla   
-                      descuentos.rows.add(result).draw();  //mostrar datos en la tabla
+                      console.log(result);
+                      descuentos.rows.add(result)  
+                      descuentos.draw()                    
+                      // descuentos.clear().draw(); //limpiar la tabla   
+                      // descuentos.rows.add(result).draw();  //mostrar datos en la tabla
                   }
               });
               $("#btnSend").prop("disabled", false);
@@ -158,6 +160,12 @@ window.onload=function(){
     descuentos.clear().draw();
     $("#tableHeader").html(html);
     $("#tableFooter").html(html);
+    descuentos = $('.mydatatable').DataTable({
+      dataSrc:"",
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json" //Archivo de idioma
+      }
+    });  
   });
 
   $("form#data").submit(function(e) {
