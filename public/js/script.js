@@ -160,12 +160,6 @@ window.onload=function(){
     descuentos.clear().draw();
     $("#tableHeader").html(html);
     $("#tableFooter").html(html);
-    descuentos = $('.mydatatable').DataTable({
-      dataSrc:"",
-      language: {
-        url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json" //Archivo de idioma
-      }
-    });  
   });
 
   $("form#data").submit(function(e) {
